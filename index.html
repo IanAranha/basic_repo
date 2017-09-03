@@ -10,7 +10,7 @@
     <body>
         <div id="container">
         <div id="world"></div>
-        <div id="pacman" style="top: 25px; left: 25px;"></div>
+        <div id="pacman"></div>
 
         <script type="text/javascript">
             
@@ -30,6 +30,11 @@
         
         var output = "";
             
+        var pacman = {
+            x: 24,
+            y: 25
+        };
+            
             
         function displayworld(){    
             
@@ -43,16 +48,38 @@
                     if (world[i][j] == 0)
                     output += "<div class='empty'></div>";
                     }
-                output += "</div>";
+                output += "\n</div>";
             }
 //            console.log(output);
             document.getElementById("world").innerHTML=output;
         }
+        function displayPacman(){
+            document.getElementById("pacman").style.top = pacman.y+"px";
+            document.getElementById("pacman").style.left = pacman.x+"px";
+        }
+            
         displayworld();
+        displayPacman();
+        console.log(displayPacman);
             
         document.onkeydown = function(e){
+            if (e.keyCode == 37){
+                pacman.x -= 20;
+            }   
+            else if (e.keyCode == 39){
+                pacman.x += 20;
+            }
+            else if (e.keyCode == 38){
+                pacman.y += 20;
+            }
+            else if (e.keyCode == 40){
+                pacman.y -= 20;
+            }
             console.log(e.keyCode);
+            displayPacman();
         }
+            
+            
         </script>  
        
         </div>      
